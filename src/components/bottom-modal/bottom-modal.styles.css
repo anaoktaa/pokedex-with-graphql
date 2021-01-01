@@ -1,0 +1,26 @@
+.bottom-modal-container {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000085;
+    transition: all .4s;
+    transform: translateY(100%);
+}
+
+.show-modal {
+    transform: translateY(0);
+}
+
+.pokemon-save-name-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -5px 10px -5px #000;
+}
