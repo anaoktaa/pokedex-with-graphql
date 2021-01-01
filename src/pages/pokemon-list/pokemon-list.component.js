@@ -1,20 +1,62 @@
-import React from 'react';
+import React from  'react-router';
+import { useQuery } from '@apollo/client';
 
-const PokemonList = ({ pokemonList }) => {
+import { GET_POKEMONS } from '../../graphql/graphql';
+import PokemonCard from '../../components/pokemon-card/pokemon-card.component';
+
+import './pokemon-list.styles.css';
+
+const PokemonList = ({ history }) => {
+ 
+    const limit = 10;
+    const { loading, data, error, fetchMore  } = useQuery(GET_POKEMONS, {
+        variables: {
+            limit,
+            offset: 0
+        },
+    });
+
+    const handlePokemonDetail = (pokemonDetail) => {
+       history.push(`/pokemon-detail/${pokemonDetail.name}`)
+    }
+
+    if (loading) return 'Loading...';
+    if (error) return `Errro ${error}`;
+
     return (
         <div>
-            <h1>
-                Pokemon List
-            </h1>
             {
-                !pokemonList? null : pokemonList.map((pokemonItem) => (
-                    <div key={pokemonItem.name}>
-                        <p>{pokemonItem.name}</p>
-                        <img src={pokemonItem.image} alt=''/>
-                    </div>
+                !data.pokemons.results? null : data.pokemons.results.map((pokemonItem) => (
+                    <PokemonCard
+                        pokemonName={pokemonItem.name}
+                    />
+                    // <div onClick={() => handlePokemonDetail(pokemonItem)} className='pokemon-list-container' key={pokemonItem.id}>
+                    //     <p>{pokemonItem.name}</p>
+                    //     <img className='pokemon-sprites' src={pokemonItem.image} alt=''/>
+                    // </div>
                 ))
               
             }
+            <button
+                onClick={() => {
+                    const url = new URL(data.pokemons.next);
+                    const offset = url.searchParams.get("offset");
+                    if (fetchMore) {
+                        fetchMore({
+                            variables: { limit: 10, offset: Number(offset) },
+                            updateQuery: (prevResult, { fetchMoreResult }) => {
+                                fetchMoreResult.pokemons.results = [
+                                    ...prevResult.pokemons.results,
+                                    ...fetchMoreResult.pokemons.results
+                                ];
+                              return fetchMoreResult;
+                            }
+                        });
+                    }
+                }}
+            >
+                More
+            </button>
         </div>
     )
 }
