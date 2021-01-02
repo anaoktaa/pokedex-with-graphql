@@ -8,7 +8,7 @@ import './pokemon-list.styles.css';
 
 const PokemonList = ({ history }) => {
  
-    const limit = 10;
+    const limit = 3
     const { loading, data, error, fetchMore  } = useQuery(GET_POKEMONS, {
         variables: {
             limit,
