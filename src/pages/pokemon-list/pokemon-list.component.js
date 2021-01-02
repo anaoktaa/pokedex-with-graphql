@@ -24,16 +24,16 @@ const PokemonList = ({ history }) => {
     if (error) return `Errro ${error}`;
 
     return (
-        <div>
+        <div className='pokemon-list-container'>
             {
                 !data.pokemons.results? null : data.pokemons.results.map((pokemonItem) => (
-                    <PokemonCard
-                        pokemonName={pokemonItem.name}
-                    />
-                    // <div onClick={() => handlePokemonDetail(pokemonItem)} className='pokemon-list-container' key={pokemonItem.id}>
-                    //     <p>{pokemonItem.name}</p>
-                    //     <img className='pokemon-sprites' src={pokemonItem.image} alt=''/>
-                    // </div>
+                    <div className='pokemon-item-container' onClick={() => handlePokemonDetail(pokemonItem)} key={pokemonItem.id}>
+                        <div className='image-pokemon-container'>
+                            <img className='pokemon-sprites' src={pokemonItem.image} alt=''/>
+                        </div>
+                        <div className='pokemon-id-overlay'>#{pokemonItem.id < 10? '000'+pokemonItem.id  : pokemonItem.id < 100? '00' + pokemonItem.id : pokemonItem.id < 1000? '0' + pokemonItem.id: pokemonItem.id}</div>
+                        <div className='pokemon-name-container'>{pokemonItem.name}</div>
+                    </div>
                 ))
               
             }

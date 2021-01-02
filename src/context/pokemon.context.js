@@ -1,12 +1,19 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 export const PokemonContext = createContext({
+    mode: 'light',
+    hiddenMenu: true,
     myPokemonList : localStorage.getItem('myPokemonList')? localStorage.getItem('myPokemonList') : [] ,
     addMyPokemon : () => {},
-    removeMyPokemonFromList: () => {}
+    removeMyPokemonFromList: () => {},
+    setModeApp: () => {},
+    setHiddenMenu: () => {},
+
 });
 
 const PokemonProvider = ({ children }) => {
+    const [mode, setMode] = useState('light');
+    const [ hiddenMenu, setToggleHiddenMenu ] = useState(true);
     const [ myPokemonList, setMyPokemonList ] = useState(localStorage.getItem('myPokemonList')? JSON.parse(localStorage.getItem('myPokemonList')) : []);
     
     const addMyPokemon = (value) => {
@@ -15,6 +22,19 @@ const PokemonProvider = ({ children }) => {
 
     const removeMyPokemonFromList = (value) => {
         setMyPokemonList(oldData => oldData.filter((item) => item.ownAliasName !== value))
+    }
+
+    const setHiddenMenu = () => {
+        setToggleHiddenMenu(!hiddenMenu);
+    }
+
+    const setModeApp = () => {
+        if (mode === 'light') {
+            setMode('dark');
+        }
+        else {
+            setMode('light');
+        }
     }
 
     useEffect(() => {
@@ -28,9 +48,13 @@ const PokemonProvider = ({ children }) => {
     return (
         <PokemonContext.Provider
             value={{
+                mode,
                 myPokemonList,
+                hiddenMenu,
                 addMyPokemon,
-                removeMyPokemonFromList
+                removeMyPokemonFromList,
+                setModeApp,
+                setHiddenMenu
             }}
         >
             {children}

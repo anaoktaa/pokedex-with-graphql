@@ -1,0 +1,48 @@
+.slider {
+    width: 70px;
+    height: 33px;
+    background-color: #656382;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.light.slider {
+    background-color: #f3ebb3;
+}
+
+.round {
+    width: 25px;
+    height: 25px;
+    background-color: #fbfbfb;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateX(5px);
+    transition: all .5s;
+}
+
+.moon, .sun {
+    position: absolute;
+    transform: translateX(5px) rotate(225deg);
+    opacity: 0;
+    transition: all .3s;
+    display: flex;
+    align-items: center;
+}
+
+.moon-active {
+    opacity: 1;
+    transform: translateX(35px) rotate(0deg);
+}
+
+.sun-active {
+    opacity: 1;
+    transform: translateX(5px) rotate(0deg);
+}
+
+.light-mode {
+    transform: translateX(40px);
+}
