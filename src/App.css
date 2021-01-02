@@ -2,6 +2,7 @@ body {
   margin: 0;
   line-height: 1.5715;
   background-color: #2e2d3c;
+  font-family: 'Baloo Bhai 2',cursive;
 }
 
 code {
@@ -15,5 +16,5 @@ code {
 }
 
 .app-content-container {
-  margin-top: 100px;
+  margin-top: 85px;
 }

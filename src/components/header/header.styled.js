@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-    height: ${(props) => props.hiddenMenu? '70px' : '200px'};
-    border-bottom: 1px solid #61669c1a;
+    height: ${(props) => props.hiddenMenu? '70px' : '160px'};
+    border-bottom: 1px solid #ffffff36;
     transition: all .8s;
     overflow: hidden;
     position: fixed;
@@ -31,3 +31,16 @@ export const HeaderTitle = styled.p`
     font-weight: 800;
     color: #efefef;
 `;
+
+export const HeaderDropdownMenu = styled.ul`
+    list-style-type: none;
+    margin: 0 0 10px;
+    padding: 0;
+    text-align: left;
+    
+    li {
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+`;
+

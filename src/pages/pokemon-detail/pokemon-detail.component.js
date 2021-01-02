@@ -6,6 +6,7 @@ import { GetRandomInteger, findPokemonName } from '../../utils/utils';
 
 import BottomModal from '../../components/bottom-modal/bottom-modal.component';
 import { PokemonContext } from '../../context/pokemon.context';
+import { PokemonImageContainer, PokemoName } from '../../components/pokemon-card/pokemon-item.styled';
 
 import './pokemon-detail.styles.css';
 
@@ -59,20 +60,34 @@ const PokemonDetail = ({ match: { params: { pokemonId } } }) => {
     if (error) return `Error :  ${error}`;
 
     return (
-        <div>
-            <h2>
-                {data.pokemon.name}
-            </h2>
-            <img className='pokemon-sprites' src={data.pokemon.sprites.front_default} alt=''/>
-            <button onClick={handleCatchPokemon}>Catch Pokemon</button>
+            <div className='pokemon-detail-container'>   
+                <div className='pokemon-short-detail'>
+                    <div>
+                       
+                        <p className='poke-name'>
+                            {data.pokemon.name}
+                        </p>
 
+                        <div>
+                            <div className='badge'>Fire</div>
+                            <div className='badge'>Ground</div>
+                        </div>
+                    </div>
+                    <p className='poke-id'>
+                        #0001
+                    </p>
+                  
+                </div>
+                <div className='text-end'>
+                    <img width='100%' height='100%' src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/00${data.pokemon.id}.png`} alt=''/>
+                </div>
             <BottomModal
                 show={showBottomModal}
             >
                 <div className='save-pokemon-container'>
                     <input value={pokemonName} onChange={handleChange} placeholder='Type your pokemon name'/>
                     <button onClick={handleSavePokemon}>Save Your Pokemon</button>
-
+                    <button onClick={handleCatchPokemon}>Catch Pokemon</button>
                 </div>
           
             </BottomModal>

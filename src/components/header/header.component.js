@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { HeaderContainer, HeaderTitle, HeaderMenu, HeaderWrapper } from './header.styled';
-import Switch from '../switch/switch.component';
+import { HeaderContainer, HeaderTitle, HeaderWrapper, HeaderDropdownMenu } from './header.styled';
 import './header.styles.css';
 
 const Header = () => {
@@ -25,13 +24,10 @@ const Header = () => {
                   </div>
                 </div>
             </HeaderWrapper>
-            <div className='dropdown-menus'>
-                <ul>
-                    <li><Link className={`header-menu-dropdown`} to='#'>Home</Link></li>
-                    <li><Link className={`header-menu-dropdown`} to='#'>My Pokemons</Link></li>
-                </ul>
-                <Switch style={{marginTop: '20px'}}/>
-            </div>  
+            <HeaderDropdownMenu>
+                <li><Link className={`header-menu-dropdown`} to='#'>Home</Link></li>
+                <li><Link className={`header-menu-dropdown`} to='#'>My Pokemons</Link></li>
+            </HeaderDropdownMenu>
         </HeaderContainer>
     )
 }
