@@ -23,7 +23,8 @@ export const GET_POKEMON = gql`
         name
         abilities {
             ability {
-            name
+              url
+              name
             }
         }
         height
@@ -43,6 +44,14 @@ export const GET_POKEMON = gql`
               name
             }
         }
+        stats {
+          base_stat
+          effort
+          stat {
+            name
+        
+          }
+        }
         types {
             type {
             name
@@ -52,4 +61,15 @@ export const GET_POKEMON = gql`
         status
         }
     }
+`;
+
+export const GET_ABILITY = gql`
+  query ability($ability: String!) {
+    ability(ability: $ability) {
+      params
+      status
+      message
+      response
+    }
+  }
 `;

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 export const PokemonContext = createContext({
-    mode: 'light',
+    mode: 'dark',
     hiddenMenu: true,
     myPokemonList : localStorage.getItem('myPokemonList')? localStorage.getItem('myPokemonList') : [] ,
     addMyPokemon : () => {},
@@ -12,7 +12,7 @@ export const PokemonContext = createContext({
 });
 
 const PokemonProvider = ({ children }) => {
-    const [mode, setMode] = useState('light');
+    const [mode, setMode] = useState('dark');
     const [ hiddenMenu, setToggleHiddenMenu ] = useState(true);
     const [ myPokemonList, setMyPokemonList ] = useState(localStorage.getItem('myPokemonList')? JSON.parse(localStorage.getItem('myPokemonList')) : []);
     

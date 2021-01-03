@@ -5,7 +5,7 @@ export const PokemonItemContainer = styled.div`
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    background: #3a384c;
+    background: ${({ theme }) => theme.secondaryBackground};
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
@@ -17,15 +17,17 @@ export const PokemonItemContainer = styled.div`
     height: 116px;
     font-size: 13px;
     font-family: 'Baloo Bhai 2',cursive;
+    box-shadow: ${({ theme }) => theme.background === '#fff'? '7px 6px 1px #dadadad1, 0px 1px 5px #dadadad1': 'none'};
 `;
 
 export const PokemonImageContainer = styled.div`
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     text-align: end;
 
     img {
         object-fit: contain;
+        image-rendering: pixelated;
     }
 `;
 
@@ -49,18 +51,19 @@ export const PokemonDetailChar = styled.div`
     align-items: flex-start;
     text-align: left;
 `;
-
+// color: #ded8cd2e;
 export const PokemonId = styled.p`
     font-size: 40px;
-    color: #ded8cd2e;
+    color: ${({ theme }) => theme.transparentText};
     font-weight: 500;
     margin: 0;
     padding: 0;
 `;
-
+//  color: #d2d2d2;
 export const PokemoName = styled.p`
     font-size: 22px;
-    color: #d2d2d2;
+  
+    color: ${({ theme }) => theme.primaryText};
     margin: -15px 0 0;
     padding: 0;
 `;

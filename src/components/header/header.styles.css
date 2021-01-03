@@ -42,11 +42,3 @@
     position: absolute;
     cursor: pointer;
 }
-
-
-.header-menu-dropdown {
-    font-size: 20px;
-    text-decoration: none;
-    transition: .5s;
-    color: #f5f5f5;
-}

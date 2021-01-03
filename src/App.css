@@ -1,20 +1,5 @@
 body {
-  margin: 0;
-  line-height: 1.5715;
-  background-color: #2e2d3c;
-  font-family: 'Baloo Bhai 2',cursive;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.App {
-  text-align: left;
-  color: white !important;
-}
-
-.app-content-container {
-  margin-top: 85px;
+    font-family: 'Baloo Bhai 2',cursive;
+    margin: 0;
+    padding: 0;
 }

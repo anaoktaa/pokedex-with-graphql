@@ -26,6 +26,7 @@ const PokemonList = ({ history }) => {
             {
                 !data.pokemons.results? null : data.pokemons.results.map((pokemon) => (
                     <PokemonItem
+                        key={pokemon.id}
                         id={pokemon.id}
                         name={pokemon.name}
                         image={pokemon.image}

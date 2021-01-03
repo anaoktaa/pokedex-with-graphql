@@ -1,0 +1,97 @@
+.tabs-container {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    color: white;
+    position: relative;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    width: 100%;
+    scrollbar-width: none; 
+}
+
+.custom-tabs-wrapper-container,
+.custom-tabs-wrapper-container-with-padding
+{
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+/* .custom-tabs-wrapper-container-with-padding {
+    padding: 0 30px;
+} */
+
+.tab-arrow-icon {
+    font-size: 10px;
+}
+
+.tabs-previous {
+    left: 0;
+}
+
+.tabs-left-arrow,
+.tabs-right-arrow {
+    position: absolute;
+    height: 38px;
+    width: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;   
+}
+
+.tabs-right-arrow {
+    right: 0;
+}
+
+.tabs-left-arrow {
+    left: 0;
+    align-items: flex-start;
+}
+
+.button-arrow {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #c1c1c1;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tabs-container::-webkit-scrollbar {
+    display: none;
+}
+
+.tabs-container li {
+    display: block;
+    white-space: nowrap;
+}
+
+.tab-active {
+    position: absolute;
+    transition: all .3s;
+    border-radius: 5px;
+    bottom: 0;
+    color: white !important;
+}
+
+.tab-active-overlay  {
+    position: absolute;
+    transition: all .3s;
+    border-radius: 5px;
+    bottom: 0;
+    border-bottom: 2px solid white;
+    background-color: #2e2d3c;
+    height: 100%;
+    color: white !important;
+    /* box-shadow: 0 16px 26px -10px rgba(84,92,216,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(84,92,216,.2); */
+}

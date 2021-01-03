@@ -1,0 +1,25 @@
+
+.tab-panel {
+    padding: 4px 20px;
+    color: #80808091;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 100;
+}
+
+.tab-panel:hover {
+    color: #5d5d5d;
+}
+
+.tab-panel-active {
+    left: 0;
+    cursor: default;
+    color: white !important;
+}
+
+.tab-panel-active {
+    left: 0;
+    cursor: default;
+    color: white !important;
+}

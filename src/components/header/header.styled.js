@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-    height: ${(props) => props.hiddenMenu? '70px' : '160px'};
-    border-bottom: 1px solid #ffffff36;
+    height: ${(props) => props.hiddenMenu? '70px' : '200px'};
+    border-bottom: 1px solid #4a3e5636;
     transition: all .8s;
     overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
-    background-color: #2e2d3c;
-    color: #efefef;
+    z-index: 103;
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.primaryText};
     font-family: 'Baloo Bhai 2', cursive;
     padding: 0 20px;
   
@@ -29,7 +29,7 @@ export const HeaderTitle = styled.p`
     margin: 0;
     padding: 0;
     font-weight: 800;
-    color: #efefef;
+    color: ${({ theme }) => theme.primaryText};
 `;
 
 export const HeaderDropdownMenu = styled.ul`
@@ -44,3 +44,9 @@ export const HeaderDropdownMenu = styled.ul`
     }
 `;
 
+export const LinkMenu = styled.a`
+    font-size: 20px;
+    text-decoration: none;
+    transition: .5s;
+    color: ${({ theme }) => theme.primaryText};
+`;
