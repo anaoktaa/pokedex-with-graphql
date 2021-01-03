@@ -5,6 +5,13 @@
     align-items: center;
 }
 
+
+@media screen and (min-width: 1024px) {
+    .icon-header-container {
+        display: none;
+    }
+}
+
 .icon-bar-show {
     opacity: 1;
     visibility: visible;
@@ -42,3 +49,4 @@
     position: absolute;
     cursor: pointer;
 }
+

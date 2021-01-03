@@ -14,6 +14,10 @@ export const HeaderContainer = styled.div`
     color: ${({ theme }) => theme.primaryText};
     font-family: 'Baloo Bhai 2', cursive;
     padding: 0 20px;
+
+    @media screen and (min-width: 1024px) {
+        padding: 0 50px;
+    }
   
 `;
 
@@ -42,11 +46,34 @@ export const HeaderDropdownMenu = styled.ul`
         margin-bottom: 8px;
         font-size: 12px;
     }
+
 `;
 
-export const LinkMenu = styled.a`
-    font-size: 20px;
-    text-decoration: none;
-    transition: .5s;
-    color: ${({ theme }) => theme.primaryText};
+export const LinkMenu = styled.span`
+    a {
+        color: ${({ theme }) => theme.primaryText};
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: .5s;
+        color: ${({ theme }) => theme.primaryText};
+        font-family: 'Heebo',sans-serif;
+    }
+
+    a:hover {
+        color: #787879;
+    }
+
+    @media screen and (min-width: 1024px) {
+        margin-right: 33px;
+    }
 `;
+
+export const RightMenuContainer = styled.div`
+    display: none;
+
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        align-items: center;
+    }
+`;  

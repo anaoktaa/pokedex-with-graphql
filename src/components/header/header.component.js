@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { HeaderContainer, HeaderTitle, HeaderWrapper, HeaderDropdownMenu,
-         LinkMenu } from './header.styled';
+         LinkMenu, RightMenuContainer } from './header.styled';
 import Switch from '../switch/switch.component';
 import './header.styles.css';
 
-const Header = () => {
+const Header = ({ history }) => {
     const [ hiddenMenu, setHiddenMenu ] = useState(true);
 
     const handleToggleMenu = () => {
         setHiddenMenu(!hiddenMenu);
+    }
+
+    const handleRoute = (route) => {
+        history.push(`/${route}`)
     }
 
     return (
@@ -25,6 +29,11 @@ const Header = () => {
                     <i onClick={handleToggleMenu} style={style.icon} class="fas fa-times"></i>
                   </div>
                 </div>
+                <RightMenuContainer>
+                    <LinkMenu><Link to='/'>Pokemon List</Link></LinkMenu>
+                    <LinkMenu><Link to='/my-pokemon-list'>My Pokemons</Link></LinkMenu>
+                    <Switch/>
+                </RightMenuContainer>
             </HeaderWrapper>
             <HeaderDropdownMenu>
                 <li><LinkMenu href='#'>Home</LinkMenu></li>
@@ -41,4 +50,4 @@ const style = {
         cursor: 'pointer'
     }
 }
-export default Header;
+export default withRouter(Header);

@@ -1,18 +1,96 @@
 .save-pokemon-container {
-    padding: 20px 15px;
+    padding: 30px 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-button {
-    padding: 10px 25px;
-    border-radius: 30px;
-    border: none;
-    color: white;
-    background-color: #fdba10;
-    font-family: 'Heebo', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: bold;
+.column-center {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
+
+.pokeball-catch {
+    position: absolute;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    transform: scale(0);
+}
+
+
+.show-pokeball {
+    animation: throw-ball 3s 1 1.8s, wiggle 1s 3 4.8s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes wiggle {
+    0% {
+      transform: rotate(0);
+    }
+    10% {
+      transform: rotate(-15deg);
+    }
+    20% {
+      transform: rotate(15deg);
+    }
+    30% {
+      transform: rotate(-15deg);
+    }
+    50% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(0);
+    }
+}
+
+@keyframes throw-ball {
+    0% {
+      bottom: -10%;
+      transform: scale(0);
+    }
+    10% {
+        bottom: 30%;
+        transform: scale(1);
+    }
+    20% {
+        bottom: 35%;
+        transform: scale(1);
+    }
+    30% {
+        bottom: 15%;
+        transform: scale(1);
+    }
+    40% {
+        bottom: 18%;
+        transform: scale(1);
+    }
+    50% {
+        bottom: 35%;
+        transform: scale(1);
+    }
+    60% {
+        bottom: 15%;
+        transform: scale(1);
+    }
+    70% {
+        bottom: 18%;
+        transform: scale(1);
+    }
+    80% {
+        bottom: 35%;
+        transform: scale(1);
+    }
+    90% {
+        bottom: 15%;
+        transform: scale(1);
+    }
+    100% {
+        bottom: 18%;
+        transform: scale(1);
+    }
+}
+  

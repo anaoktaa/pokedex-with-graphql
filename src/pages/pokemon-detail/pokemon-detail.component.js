@@ -11,6 +11,7 @@ import Badge from '../../components/badge/badge.component';
 import PokemonAbilities from '../../components/pokemon-abilities/pokemon-abilities.component';
 import Progress from '../../components/progress/progress.component';
 import Button from '../../components/button/button.component';
+import TextField from '../../components/text-field/text-field.component'
 import { changeIdDigit } from '../../utils/utils';
 import { PokemonContext } from '../../context/pokemon.context';
 import { PokemonDetailContainer, PokemonShortDetail, PokemonName,
@@ -23,6 +24,9 @@ import './pokemon-detail.styles.css';
 const PokemonDetail = ({ match: { params: { pokeName } } }) => {
     const [ showBottomModal, setShowBottomModal ] = useState(false);
     const [ pokemonName, setPokemonName ] = useState(''); 
+    const [ throwBall, showThrowBall ] = useState(false);
+    const [ caughtMsg, setSuccessCaught ] = useState('');
+    const [ errName, setErrName ] = useState(null); 
     const { addMyPokemon, myPokemonList } = useContext(PokemonContext);
 
     const { loading, data, error } = useQuery(GET_POKEMON, {
@@ -32,30 +36,55 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
     });
 
     const handleCatchPokemon = () => {
+        setSuccessCaught('');
         const probability = GetRandomInteger(2);
+        window.scrollTo(0, 0);
+        showThrowBall(true);
+        
         if (probability === 1) {
             setTimeout(() => {
                 setShowBottomModal(true);
-            }, 1000)
+            }, 7000)
         }
+        console.log('Probability', probability);
+
+        setTimeout(() => {
+            if (probability === 1) {
+                setSuccessCaught('Pokemon is caught !')
+            }
+            else {
+                setSuccessCaught('Failed to catch Pokemon !')
+            }
+            showThrowBall(false);
+        }, 7000)
     }   
 
     const handleChange = event => {
         const { value } = event.target;
+        setErrName(null);
         setPokemonName(value);
     }
 
-    const handleSavePokemon = () => {
-        if (!pokemonName) return;
+    const handleSavePokemon = (event) => {
+        event.preventDefault();
+        const regexName = (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/g.test(pokemonName));
+
+        if (!pokemonName || !regexName) {
+            setErrName('Name is invalid !')
+            return;
+        }
+
         const findDuplicateName = findPokemonName(myPokemonList, pokemonName);
         if (findDuplicateName) {
-            alert('Name already taken');
+            setErrName('Name already taken')
             return;
         }  
         addMyPokemon({
             ownAliasName: pokemonName,
             detail: data
         });
+        showThrowBall(false);
+        setSuccessCaught('Pokemon is added to your list');
     }
 
     useEffect(() => {
@@ -88,8 +117,10 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             </PokemonShortDetail>
 
             <PokeImageContainer>
+                <p>{caughtMsg}</p>
                 <img width='100%' height='100%' src={data.pokemon.sprites.front_default} alt=''/>
                 <HeightandWeight>Height : {data.pokemon.height} m and Weight : {data.pokemon.weight} kg</HeightandWeight>
+                <img className={`pokeball-catch ${throwBall?  'show-pokeball' : ''}`} src={pokeball} alt='' width='100%' height='100%'/>
             </PokeImageContainer>
 
             <CustomTabsWrapper style={{marginTop: '20px'}}>
@@ -126,21 +157,31 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             </CustomTabsWrapper>
 
             <CatchButtonContainer>
-                <Button onClick={handleCatchPokemon} bgColor='#ffc509' bgColorHover='#e4bb35' style={{width: '250px'}}>
+                <Button disabled={throwBall} onClick={handleCatchPokemon} bgColor='#ffc509' bgColorHover='#e4bb35' style={{width: '250px'}}>
                     <img src={pokeball} alt='' width='10%' height='10%'/> &nbsp;
                     Catch Pokemon
                 </Button>
             </CatchButtonContainer>
 
-            {/* <BottomModal
+            <BottomModal
                 show={showBottomModal}
+                // show={true}
             >
                 <div className='save-pokemon-container'>
-                    <input value={pokemonName} onChange={handleChange} placeholder='Type your pokemon name'/>
-                    <button onClick={handleSavePokemon}>Save Your Pokemon</button>
+                    <form className='column-center' onSubmit={handleSavePokemon}>
+                        <TextField 
+                            error={errName}
+                            helperText={errName}
+                            value={pokemonName} 
+                            onChange={handleChange}
+                            placeholder='Type your pokemon name'/>
+                        <Button onSubmit={handleSavePokemon}  bgColor='#4c4c4c' bgColorHover='#7b7878' style={{width: '250px', marginTop: '20px'}}>
+                            Save Pokemon
+                        </Button>
+                    </form>                  
                 </div>
           
-            </BottomModal> */}
+            </BottomModal>
         </PokemonDetailContainer>
     );
 }

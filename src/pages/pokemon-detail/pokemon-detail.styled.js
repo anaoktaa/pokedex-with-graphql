@@ -32,10 +32,14 @@ export const PokemonId = styled.p`
 
 export const PokeImageContainer = styled.div`
     width: 80%;
+    margin-top: 10px;
     height: 200px;
     text-align: center;
     overflow: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     img {
         object-fit: contain;
