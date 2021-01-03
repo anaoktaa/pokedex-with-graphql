@@ -16,7 +16,7 @@ import { changeIdDigit } from '../../utils/utils';
 import { PokemonContext } from '../../context/pokemon.context';
 import { PokemonDetailContainer, PokemonShortDetail, PokemonName,
          PokemonId, PokeImageContainer, HeightandWeight,DetailPanelContainer,
-         CatchButtonContainer } from './pokemon-detail.styled';
+         CatchButtonContainer, PokeDetailGrid } from './pokemon-detail.styled';
 
 import pokeball from '../../assets/ball.png';
 import './pokemon-detail.styles.css';
@@ -74,17 +74,40 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             return;
         }
 
-        const findDuplicateName = findPokemonName(myPokemonList, pokemonName);
-        if (findDuplicateName) {
-            setErrName('Name already taken')
-            return;
-        }  
-        addMyPokemon({
-            ownAliasName: pokemonName,
-            detail: data
-        });
-        showThrowBall(false);
-        setSuccessCaught('Pokemon is added to your list');
+        if (!myPokemonList) {
+            addMyPokemon({
+                ownAliasName: pokemonName,
+                detail: {
+                    pokemon: {
+                        types: data.pokemon.types,
+                        id: data.pokemon.id,
+                        name: data.pokemon.name,
+                        sprites: data.pokemon.sprites
+                    }
+                }
+            });
+        }
+        else {
+            const findDuplicateName = findPokemonName(myPokemonList, pokemonName);
+
+            if (findDuplicateName) {
+                setErrName('Name already taken')
+                return;
+            }  
+            addMyPokemon({
+                ownAliasName: pokemonName,
+                detail: {
+                    pokemon: {
+                        types: data.pokemon.types,
+                        id: data.pokemon.id,
+                        name: data.pokemon.name,
+                        sprites: data.pokemon.sprites
+                    }
+                }
+            });
+            showThrowBall(false);
+            setSuccessCaught('Pokemon is added to your list');
+        }       
     }
 
     useEffect(() => {
@@ -115,47 +138,49 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
                     #{changeIdDigit(data.pokemon.id)}
                 </PokemonId>
             </PokemonShortDetail>
+            <PokeDetailGrid>
+                <PokeImageContainer>
+                    <p className={`msg ${caughtMsg? 'mgs-show' :''}`}>{caughtMsg}</p>
+                    <img width='100%' height='100%' src={data.pokemon.sprites.front_default} alt=''/>
+                    <HeightandWeight>Height : {data.pokemon.height} m and Weight : {data.pokemon.weight} kg</HeightandWeight>
+                    <img className={`pokeball-catch ${throwBall?  'show-pokeball' : ''}`} src={pokeball} alt='' width='100%' height='100%'/>
+                </PokeImageContainer>
 
-            <PokeImageContainer>
-                <p>{caughtMsg}</p>
-                <img width='100%' height='100%' src={data.pokemon.sprites.front_default} alt=''/>
-                <HeightandWeight>Height : {data.pokemon.height} m and Weight : {data.pokemon.weight} kg</HeightandWeight>
-                <img className={`pokeball-catch ${throwBall?  'show-pokeball' : ''}`} src={pokeball} alt='' width='100%' height='100%'/>
-            </PokeImageContainer>
-
-            <CustomTabsWrapper style={{marginTop: '20px'}}>
-                <CustomTabPanel data-key='statistic' title='Statistics'>
+                <CustomTabsWrapper style={{marginTop: '20px'}}>
+                    <CustomTabPanel data-key='statistic' title='Statistics'>
+                        <DetailPanelContainer>
+                            {
+                                data.pokemon.stats.map((item) => (
+                                    <Progress value={item.base_stat} color={statColor(item.stat.name)} name={item.stat.name} />
+                                ))
+                            }
+                        
+                        </DetailPanelContainer>
+                    </CustomTabPanel>
+                    <CustomTabPanel data-key='abilities' title='Abilities'>
                     <DetailPanelContainer>
-                        {
-                            data.pokemon.stats.map((item) => (
-                                <Progress value={item.base_stat} color={statColor(item.stat.name)} name={item.stat.name} />
-                            ))
-                        }
-                      
+                            {
+                                data.pokemon.abilities.map((item, index) => (
+                                    <PokemonAbilities key={index} ability={item.ability.name}/>
+                                ))
+                            }
                     </DetailPanelContainer>
-                </CustomTabPanel>
-                <CustomTabPanel data-key='abilities' title='Abilities'>
-                   <DetailPanelContainer>
-                        {
-                            data.pokemon.abilities.map((item, index) => (
-                                <PokemonAbilities key={index} ability={item.ability.name}/>
-                            ))
-                        }
-                   </DetailPanelContainer>
-                </CustomTabPanel>
+                    </CustomTabPanel>
 
-                <CustomTabPanel data-key='moves' title='Moves'>
-                    <DetailPanelContainer>
-                        {data.pokemon.moves.map(({ move: {name } }) => {
-                         
-                            return (
-                                <Badge type='badge'>{name}</Badge>
-                            )
-                        })}
-                    </DetailPanelContainer>
-                </CustomTabPanel>
-            </CustomTabsWrapper>
+                    <CustomTabPanel data-key='moves' title='Moves'>
+                        <DetailPanelContainer>
+                            {data.pokemon.moves.map(({ move: {name } }) => {
+                            
+                                return (
+                                    <Badge type='badge'>{name}</Badge>
+                                )
+                            })}
+                        </DetailPanelContainer>
+                    </CustomTabPanel>
+                </CustomTabsWrapper>
 
+            </PokeDetailGrid>
+           
             <CatchButtonContainer>
                 <Button disabled={throwBall} onClick={handleCatchPokemon} bgColor='#ffc509' bgColorHover='#e4bb35' style={{width: '250px'}}>
                     <img src={pokeball} alt='' width='10%' height='10%'/> &nbsp;
@@ -164,8 +189,8 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             </CatchButtonContainer>
 
             <BottomModal
-                show={showBottomModal}
-                // show={true}
+                // show={showBottomModal}
+                show={true}
             >
                 <div className='save-pokemon-container'>
                     <form className='column-center' onSubmit={handleSavePokemon}>

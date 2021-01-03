@@ -5,6 +5,20 @@
     align-items: center;
 }
 
+.msg { 
+    position: absolute;
+    top: -30px;
+    font-size: 20px;
+    opacity: 0;
+    transition: all .5s;
+    transform: scale(0);
+}
+
+.mgs-show {
+    opacity: 1;
+    transform: scale(1);
+}
+
 .column-center {
     width: 100%;
     display: flex;
@@ -18,6 +32,13 @@
     width: 50px;
     height: 50px;
     transform: scale(0);
+}
+
+@media screen and (min-width: 1024px) {
+    .pokeball-catch {
+        width: 120px;
+        height: 120px;
+    }
 }
 
 

@@ -18,6 +18,11 @@ const PokemonList = ({ history }) => {
         },
     });
 
+    const handleDetail = (data) => {
+        history.push(`/pokemon-detail/${data.name}`)
+        console.log("data", data)
+    }
+
 
     if (loading) return 'Loading...';
     if (error) return `Errro ${error}`;
@@ -28,11 +33,14 @@ const PokemonList = ({ history }) => {
                 {
                     !data.pokemons.results? null : data.pokemons.results.map((pokemon) => (
                         <PokemonItem
+                            data={pokemon}
+                            handleOnClick={handleDetail}
                             key={pokemon.id}
                             id={pokemon.id}
                             name={pokemon.name}
                             image={pokemon.image}
                             history={history}
+                            showBadgeCount={true}
                         />
                     ))
                 }

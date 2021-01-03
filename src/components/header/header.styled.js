@@ -17,6 +17,7 @@ export const HeaderContainer = styled.div`
 
     @media screen and (min-width: 1024px) {
         padding: 0 50px;
+        height: 70px;
     }
   
 `;
@@ -34,6 +35,14 @@ export const HeaderTitle = styled.p`
     padding: 0;
     font-weight: 800;
     color: ${({ theme }) => theme.primaryText};
+
+    @media screen and (min-width: 768px) {
+        font-size: 40px;
+    }
+
+    @media screen and (min-width: 768px) {
+        font-size: 45px;
+    }
 `;
 
 export const HeaderDropdownMenu = styled.ul`
@@ -43,9 +52,13 @@ export const HeaderDropdownMenu = styled.ul`
     text-align: left;
     
     li {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         font-size: 12px;
     }
+
+    @media screen and  (min-width: 1024px) {
+        display: none;
+    } 
 
 `;
 

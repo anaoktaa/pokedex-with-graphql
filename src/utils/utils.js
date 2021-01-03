@@ -3,7 +3,16 @@ export const GetRandomInteger = (max) => {
 }
 
 export const findPokemonName = (pokemonList, name) => {
-    return pokemonList.find(item => item.ownAliasName === name);
+    let find = false;
+    const arrPokeList = pokemonList? Object.keys(pokemonList).map(key => pokemonList[key]) : [];
+    arrPokeList.forEach((item) => {
+        item.nameList.forEach((itemList) =>{
+            if (itemList === name){
+                find = find || true
+            }
+        })
+    });
+    return find;
 }
 
 export const changeIdDigit = (id) => {

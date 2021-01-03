@@ -3,6 +3,27 @@
     width: 100%;
 }
 
+.pokeoverlay {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+    background-color: #6f698a;
+    position: absolute;
+    transform: scale(0);
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .5s;
+}
+
+.show-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
 .space-between {
     justify-content: space-between;
 }

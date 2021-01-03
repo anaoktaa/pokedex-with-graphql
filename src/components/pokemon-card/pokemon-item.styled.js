@@ -1,5 +1,21 @@
 import styled from '@emotion/styled';
 
+
+export const PokemonOverlayDelete = styled.div`
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #6f698a;
+    position: absolute;
+    opacity: 1;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+
 export const PokemonItemContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -7,7 +23,7 @@ export const PokemonItemContainer = styled.div`
     justify-content: center;
     background: ${({ theme }) => theme.secondaryBackground};
     text-align: center;
-    cursor: pointer;
+    cursor: ${({ overlay }) => overlay? 'default': 'pointer'};
     border-radius: 10px;
     margin-bottom: 10px;
     text-transform: capitalize;
@@ -18,6 +34,30 @@ export const PokemonItemContainer = styled.div`
     font-size: 13px;
     font-family: 'Baloo Bhai 2',cursive;
     box-shadow: ${({ theme }) => theme.background === '#fff'? '7px 6px 1px #dadadad1, 0px 1px 5px #dadadad1': 'none'};
+
+
+`;
+
+export const BadgeContainer = styled.div`
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+`;
+
+export const BadgeCount = styled.div`
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 0;
+    z-index: 9;
+    right: 0;
+    font-size: 16px;
+    color: white;
+    background-color: #7f77a2;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 10px;
+    line-height: 30px;
 `;
 
 export const PokemonImageContainer = styled.div`

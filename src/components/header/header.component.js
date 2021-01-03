@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { HeaderContainer, HeaderTitle, HeaderWrapper, HeaderDropdownMenu,
          LinkMenu, RightMenuContainer } from './header.styled';
 import Switch from '../switch/switch.component';
 import './header.styles.css';
 
-const Header = ({ history }) => {
+const Header = () => {
     const [ hiddenMenu, setHiddenMenu ] = useState(true);
 
     const handleToggleMenu = () => {
         setHiddenMenu(!hiddenMenu);
     }
 
-    const handleRoute = (route) => {
-        history.push(`/${route}`)
+    const handleCloseHeader = () => {
+        setHiddenMenu(true);
     }
 
     return (
@@ -36,10 +36,11 @@ const Header = ({ history }) => {
                 </RightMenuContainer>
             </HeaderWrapper>
             <HeaderDropdownMenu>
-                <li><LinkMenu href='#'>Home</LinkMenu></li>
-                <li><LinkMenu href='#'>My Pokemons</LinkMenu></li>
+                <li><LinkMenu><Link onClick={handleCloseHeader} to='/'>Pokemon List</Link></LinkMenu></li>
+                <li><LinkMenu><Link onClick={handleCloseHeader} to='/my-pokemon-list'>My Pokemons</Link></LinkMenu></li>
+                <Switch/>
             </HeaderDropdownMenu>
-            <Switch/>
+      
         </HeaderContainer>
     )
 }
@@ -50,4 +51,4 @@ const style = {
         cursor: 'pointer'
     }
 }
-export default withRouter(Header);
+export default Header;

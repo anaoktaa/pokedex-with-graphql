@@ -10,4 +10,15 @@ export const BadgeContainer = styled.div`
     border-radius: 20px;
     text-transform: capitalize;
     font-family: 'Heebo',sans-serif;
+
+    @media screen and (min-width: 768px) {
+        font-size: 13px;
+        margin-bottom: 7px;
+    }
+
+    @media screen and (min-width: 768px) {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
 `;

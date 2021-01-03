@@ -8,7 +8,7 @@ export const CustomButton = styled.button`
     color: white;
     background-color: ${({ theme, bgColor }) => theme[bgColor]? theme[bgColor] : bgColor };
     font-family: 'Heebo', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     background-position: center;

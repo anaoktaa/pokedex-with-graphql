@@ -8,6 +8,19 @@
     z-index: 100;
 }
 
+@media screen and (min-width: 768px) {
+    .tab-panel {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .tab-panel {
+        font-size: 18px;
+    }
+}
+
+
 .tab-panel:hover {
     color: #5d5d5d;
 }
