@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 export const PokemonContext = createContext({
-    mode: 'dark',
+    mode: localStorage.getItem('mode')? localStorage.getItem('mode') : 'dark' ,
     hiddenMenu: true,
     myPokemonList : localStorage.getItem('myPokemonList')? localStorage.getItem('myPokemonList') : {} ,
     addMyPokemon : () => {},
@@ -12,7 +12,7 @@ export const PokemonContext = createContext({
 });
 
 const PokemonProvider = ({ children }) => {
-    const [mode, setMode] = useState('dark');
+    const [mode, setMode] = useState( localStorage.getItem('mode')? localStorage.getItem('mode') : 'dark');
     const [ hiddenMenu, setToggleHiddenMenu ] = useState(true);
     const [ myPokemonList, setMyPokemonList ] = useState(localStorage.getItem('myPokemonList')? JSON.parse(localStorage.getItem('myPokemonList')) : {});
     
@@ -51,6 +51,14 @@ const PokemonProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        const saveModeToLocalStorage = () => {
+            localStorage.setItem('mode', mode); 
+        }
+        saveModeToLocalStorage();
+
+    }, [mode])
+
+    useEffect(() => {
         const storeDataToLocalStorage = () => {
             const x = {...myPokemonList}
             const arr = x? Object.keys(x).map(key => x[key]) : [];
@@ -63,7 +71,6 @@ const PokemonProvider = ({ children }) => {
                     }
                 }
             })
-            // setMyPokemonList(newArr);
             localStorage.setItem('myPokemonList', JSON.stringify(newArr))
         }
         storeDataToLocalStorage();
