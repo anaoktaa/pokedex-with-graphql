@@ -4,6 +4,7 @@ import { PokemonContext } from '../../context/pokemon.context';
 import PokemonItem from '../../components/pokemon-item/pokemon-item.component';
 
 import './my-pokemon-list.styles.css';
+import '../pokemon-list/pokemon-list.styles.css';
 
 const MyPokemonList = () => {
     const { myPokemonList, removeMyPokemonFromList } = useContext(PokemonContext);

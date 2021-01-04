@@ -36,7 +36,7 @@ export const PokemonName = styled.p`
 
 export const PokemonId = styled.p`
     font-size: 23px;
-    color: #757575b3;
+    color: ${({ theme }) => theme.transparentText};
     margin: 0;
     padding: 0;
     text-transform: capitalize;

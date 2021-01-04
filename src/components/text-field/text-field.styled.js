@@ -33,9 +33,18 @@ export const TextFieldInput = styled.input`
     }
 `;
 
+export const LabelText = styled.label`
+    font-size: 12px;
+    color: ${({ error }) => error? 'red' : '#4c4c4c'};
+    margin: 0 0 5px;
+    padding-left: 3px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+`;
+
 export const HelperTxt = styled.label`
     font-size: 12px;
-    color: ${({ error }) => error? 'red' : '#000'};
+    color: ${({ error }) => error? 'red' : '#4c4c4c'};
     margin: 5px 0 0;
     padding-left: 3px;
     text-align: left;
