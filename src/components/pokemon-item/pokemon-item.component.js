@@ -37,7 +37,7 @@ const PokemonItem = ({ id, name, image, history, typeList, children, showBadgeCo
                 null
             }
             {
-                showBadgeCount && myPokemonList[name]?
+                showBadgeCount && myPokemonList[name] && myPokemonList[name].nameList.length > 0?
                 <BadgeCount>{myPokemonList[name].nameList.length}</BadgeCount>
                 :
                 null
