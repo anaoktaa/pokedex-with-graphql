@@ -8,7 +8,7 @@ import Badge from '../badge/badge.component';
 
 import { PokemonContext } from '../../context/pokemon.context';
 
-const PokemonItem = ({ id, name, image, history, typeList, children, showBadgeCount, data, handleOnClick, ...props }) => {
+const PokemonItem = ({ dataTestId, id, name, image, history, typeList, children, showBadgeCount, data, handleOnClick, ...props }) => {
     const { myPokemonList } = useContext(PokemonContext);
 
     const handleClick = () => {
@@ -16,7 +16,7 @@ const PokemonItem = ({ id, name, image, history, typeList, children, showBadgeCo
     }
   
     return (
-        <PokemonItemContainer onClick={handleClick} >
+        <PokemonItemContainer data-testid={dataTestId} onClick={handleClick} >
             <PokemonImageContainer>
                     <img width='100%' height='100%' src={image} alt=''/>
                 </PokemonImageContainer>

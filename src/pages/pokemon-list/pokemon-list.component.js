@@ -1,5 +1,6 @@
 import React from  'react-router';
 import { useQuery } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 
 import { GET_POKEMONS } from '../../graphql/graphql';
 
@@ -9,8 +10,9 @@ import Loading from '../../components/loading/loading.component';
 
 import './pokemon-list.styles.css';
 
-const PokemonList = ({ history }) => {
- 
+const PokemonList = () => {
+    const history = useHistory();
+    console.log("ISI HISTOR", history);
     const limit = 12;
     const { loading, data, error, fetchMore  } = useQuery(GET_POKEMONS, {
         variables: {
@@ -20,13 +22,12 @@ const PokemonList = ({ history }) => {
     });
 
     const handleDetail = (data) => {
+        console.log("maju teruss cuyy");
         history.push(`/pokemon-detail/${data.name}`)
-        console.log("data", data)
     }
 
-
     if (loading) return <Loading/>;
-    if (error) return `Errro ${error}`;
+    if (error) return `Error(${error})`;
 
     return (
         <div className='poke-wrapper'>
@@ -34,6 +35,7 @@ const PokemonList = ({ history }) => {
                 {
                     !data.pokemons.results? null : data.pokemons.results.map((pokemon) => (
                         <PokemonItem
+                            dataTestId={`pokemon-list-page-${pokemon.name}`}
                             data={pokemon}
                             handleOnClick={handleDetail}
                             key={pokemon.id}

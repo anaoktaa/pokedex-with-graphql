@@ -5,7 +5,7 @@ import { SpinnerOverlay, SpinnerContainer } from './loading.styled';
 const Loading = () => {
 
     return (
-        <SpinnerOverlay>
+        <SpinnerOverlay data-testid='loading-progress'>
             <SpinnerContainer/>
         </SpinnerOverlay>
     )

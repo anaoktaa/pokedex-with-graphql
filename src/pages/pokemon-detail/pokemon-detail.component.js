@@ -47,8 +47,6 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
                 setShowBottomModal(true);
             }, 7000)
         }
-        console.log('Probability', probability);
-
         setTimeout(() => {
             if (probability === 1) {
                 setSuccessCaught('Pokemon is caught !')
