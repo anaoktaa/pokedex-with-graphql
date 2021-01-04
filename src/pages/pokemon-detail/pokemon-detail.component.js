@@ -68,7 +68,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
 
     const handleSavePokemon = (event) => {
         event.preventDefault();
-        const regexName = (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/g.test(pokemonName));
+        const regexName = (/^\w+$/g.test(pokemonName));
 
         if (!pokemonName || !regexName) {
             setErrName('Name is invalid !')
@@ -183,7 +183,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             </PokeDetailGrid>
            
             <CatchButtonContainer>
-                <Button disabled={throwBall} onClick={handleCatchPokemon} bgColor='#3f3d63' bgColorHover='#5c598c' style={{width: '250px'}}>
+                <Button disabled={throwBall} onClick={handleCatchPokemon} bgColor='#deb918' bgColorHover='#f1ca24' style={{width: '250px'}}>
                     <img src={pokeball} alt='' width='10%' height='10%'/> &nbsp;
                     Catch Pokemon
                 </Button>

@@ -7,7 +7,7 @@ export const findPokemonName = (pokemonList, name) => {
     const arrPokeList = pokemonList? Object.keys(pokemonList).map(key => pokemonList[key]) : [];
     arrPokeList.forEach((item) => {
         item.nameList.forEach((itemList) =>{
-            if (itemList === name){
+            if (itemList.toLowerCase() === name.toLowerCase()){
                 find = find || true
             }
         })
