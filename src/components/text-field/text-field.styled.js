@@ -44,7 +44,7 @@ export const LabelText = styled.label`
     width: 100%;
 `;
 
-export const HelperTxt = styled.label`
+export const HelperTxt = styled.span`
     font-size: 12px;
     color: ${({ error }) => error? 'red' : '#4c4c4c'};
     margin: 5px 0 0;
