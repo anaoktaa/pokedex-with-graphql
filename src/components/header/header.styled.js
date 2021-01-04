@@ -45,24 +45,13 @@ export const HeaderTitle = styled.p`
     }
 `;
 
-export const HeaderDropdownMenu = styled.ul`
-    list-style-type: none;
-    margin: 0 0 10px;
-    padding: 0;
-    text-align: left;
-    
-    li {
-        margin-bottom: 12px;
-        font-size: 12px;
-    }
-
-    @media screen and  (min-width: 1024px) {
-        display: none;
-    } 
-
+export const HeaderDropdownMenu = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
 export const LinkMenu = styled.span`
+    margin-bottom: 13px;
     a {
         color: ${({ theme }) => theme.primaryText};
         font-size: 16px;

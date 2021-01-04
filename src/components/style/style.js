@@ -41,7 +41,7 @@ const themeDark = {
     secondaryBackground: '#3a384c',
     primaryText: '#fff',
     secondaryText: '#f5f5f5',
-    transparentText: '#ded8cd2e',
+    transparentText: '#b8b9dc',
     ...color
 };
 

@@ -36,11 +36,11 @@ const Header = () => {
                 </RightMenuContainer>
             </HeaderWrapper>
             <HeaderDropdownMenu>
-                <li><LinkMenu><Link onClick={handleCloseHeader} to='/'>Pokemon List</Link></LinkMenu></li>
-                <li><LinkMenu><Link onClick={handleCloseHeader} to='/my-pokemon-list'>My Pokemons</Link></LinkMenu></li>
+                <LinkMenu><Link onClick={handleCloseHeader} to='/'>Pokemon List</Link></LinkMenu>
+                <LinkMenu><Link onClick={handleCloseHeader} to='/my-pokemon-list'>My Pokemons</Link></LinkMenu>
                 <Switch/>
             </HeaderDropdownMenu>
-      
+         
         </HeaderContainer>
     )
 }
