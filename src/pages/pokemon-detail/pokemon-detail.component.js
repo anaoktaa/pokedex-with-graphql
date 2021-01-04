@@ -11,6 +11,7 @@ import Badge from '../../components/badge/badge.component';
 import PokemonAbilities from '../../components/pokemon-abilities/pokemon-abilities.component';
 import Progress from '../../components/progress/progress.component';
 import Button from '../../components/button/button.component';
+import Loading from '../../components/loading/loading.component';
 import TextField from '../../components/text-field/text-field.component'
 import { changeIdDigit } from '../../utils/utils';
 import { PokemonContext } from '../../context/pokemon.context';
@@ -118,7 +119,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
         handleCloseBottomModal();
     }, [myPokemonList])
 
-    if (loading) return 'Loading...';
+    if (loading) return <Loading/>;
     if (error) return `Error :  ${error}`;
 
     return (
@@ -189,8 +190,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             </CatchButtonContainer>
 
             <BottomModal
-                // show={showBottomModal}
-                show={true}
+                show={showBottomModal}
             >
                 <div className='save-pokemon-container'>
                     <form className='column-center' onSubmit={handleSavePokemon}>

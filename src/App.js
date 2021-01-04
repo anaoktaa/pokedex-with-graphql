@@ -1,18 +1,21 @@
-import React, { useContext, useEffect } from  'react';
+import React, { useContext, useEffect, lazy, Suspense } from  'react';
 import { Switch, Route } from 'react-router';
 import { withRouter } from 'react-router-dom';
-import { ThemeProvider } from '@emotion/react'
+import { ThemeProvider } from '@emotion/react';
 
-import PokemonList from './pages/pokemon-list/pokemon-list.component';
-import PokemonDetail from './pages/pokemon-detail/pokemon-detail.component';
-import MyPokemonList from './pages/my-pokemon-list/my-pokemon-list.component';
 import Header from './components/header/header.component';
+import Loading from './components/loading/loading.component';
+import ErrorBoundary from './components/error-boundary/error-boundary.component';
 
 import { PokemonContext } from './context/pokemon.context';
 import { AppWrapper, AppContentWrapper } from './App.styled';
-import theme from './components/style/style';
 
+import theme from './components/style/style';
 import './App.css';
+
+const PokemonListPage = lazy(() => import('./pages/pokemon-list/pokemon-list.component'));
+const PokemonDetailPage = lazy(() => import('./pages/pokemon-detail/pokemon-detail.component'));
+const MyPokemonListPage = lazy(() => import('./pages/my-pokemon-list/my-pokemon-list.component'));
   
 const App = () => {
     const { mode } = useContext(PokemonContext)
@@ -24,7 +27,7 @@ const App = () => {
             bodyElt.style.backgroundColor = appliedTheme.background;
         }
         applyModeToBody();
-    },[mode]);
+    },[mode, appliedTheme.background]);
 
     return (
         <ThemeProvider theme={appliedTheme}>
@@ -32,9 +35,13 @@ const App = () => {
                 <Header/>
                 <AppContentWrapper>
                     <Switch>
-                        <Route exact path='/' component={PokemonList}/>
-                        <Route path='/pokemon-detail/:pokeName' component={PokemonDetail} />
-                        <Route exact path='/my-pokemon-list' component={MyPokemonList}/>
+                        <Suspense fallback={<Loading/>}>
+                            <ErrorBoundary>
+                                <Route exact path='/' component={PokemonListPage}/>
+                                <Route path='/pokemon-detail/:pokeName' component={PokemonDetailPage} />
+                                <Route exact path='/my-pokemon-list' component={MyPokemonListPage}/>
+                            </ErrorBoundary>
+                        </Suspense>
                     </Switch>
                 </AppContentWrapper>
             </AppWrapper>

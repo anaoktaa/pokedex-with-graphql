@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { PokemonContext } from '../../context/pokemon.context';
-import PokemonItem from '../../components/pokemon-card/pokemon-item.component';
+import PokemonItem from '../../components/pokemon-item/pokemon-item.component';
 
 import './my-pokemon-list.styles.css';
 
@@ -63,13 +63,14 @@ const MyPokemonList = () => {
                         ))
                     })
                 }
-                {
-                    emptyData ?
-                    <h1 style={{textAlign: 'center'}}>No pokemons in here !</h1>
-                    :
-                    null
-                }
+          
             </div>
+            {
+                emptyData ?
+                <h1 style={{textAlign: 'center'}}>No pokemons in here !</h1>
+                :
+                null
+            }
         </div>
     )
 }

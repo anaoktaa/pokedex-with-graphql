@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { PokemonItemContainer, PokemonImageContainer,
          PokemonDetailChar, PokemoName, PokemonId, BadgeCount,
-         BadgeContainer, PokemonOverlayDelete } from './pokemon-item.styled';
+         BadgeContainer } from './pokemon-item.styled';
 import { changeIdDigit } from '../../utils/utils';
 import Badge from '../badge/badge.component';
 

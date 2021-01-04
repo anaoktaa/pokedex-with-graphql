@@ -3,8 +3,9 @@ import { useQuery } from '@apollo/client';
 
 import { GET_POKEMONS } from '../../graphql/graphql';
 
-import PokemonItem from '../../components/pokemon-card/pokemon-item.component';
+import PokemonItem from '../../components/pokemon-item/pokemon-item.component';
 import Button from '../../components/button/button.component';
+import Loading from '../../components/loading/loading.component';
 
 import './pokemon-list.styles.css';
 
@@ -24,7 +25,7 @@ const PokemonList = ({ history }) => {
     }
 
 
-    if (loading) return 'Loading...';
+    if (loading) return <Loading/>;
     if (error) return `Errro ${error}`;
 
     return (
