@@ -4,9 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 
 import Header from './components/header/header.component';
-import Loading from './components/loading/loading.component';
-import ErrorBoundary from './components/error-boundary/error-boundary.component';
-
 import { PokemonContext } from './context/pokemon.context';
 import { AppWrapper, AppContentWrapper } from './App.styled';
 
@@ -35,12 +32,10 @@ const App = () => {
                 <Header/>
                 <AppContentWrapper>
                     <Switch>
-                        <Suspense fallback={<Loading/>}>
-                            <ErrorBoundary>
-                                <Route exact path='/' component={PokemonListPage}/>
-                                <Route path='/pokemon-detail/:pokeName' component={PokemonDetailPage} />
-                                <Route exact path='/my-pokemon-list' component={MyPokemonListPage}/>
-                            </ErrorBoundary>
+                        <Suspense fallback={<div></div>}>
+                            <Route exact path='/' component={PokemonListPage}/>
+                            <Route path='/pokemon-detail/:pokeName' component={PokemonDetailPage} />
+                            <Route exact path='/my-pokemon-list' component={MyPokemonListPage}/>
                         </Suspense>
                     </Switch>
                 </AppContentWrapper>
