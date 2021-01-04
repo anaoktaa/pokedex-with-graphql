@@ -49,8 +49,8 @@ const PokemonList = ({ history }) => {
             {
                 fetchMore?
                     <Button 
-                        bgColor='#8e8e8e'
-                        bgColorHover='#bdbbbb'
+                        bgColor='#574d69'
+                        bgColorHover='#73668a'
                         style={{width: '250px', marginTop: '20px'}}
                         onClick={() => {
                             const url = new URL(data.pokemons.next);

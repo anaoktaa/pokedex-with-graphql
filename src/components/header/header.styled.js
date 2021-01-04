@@ -68,6 +68,7 @@ export const LinkMenu = styled.span`
 
     @media screen and (min-width: 1024px) {
         margin-right: 33px;
+        margin-bottom: 0;
     }
 `;
 
