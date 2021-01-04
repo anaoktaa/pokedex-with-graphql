@@ -183,7 +183,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             </PokeDetailGrid>
            
             <CatchButtonContainer>
-                <Button disabled={throwBall} onClick={handleCatchPokemon} bgColor='#f33a4e' bgColorHover='#f76473' style={{width: '250px'}}>
+                <Button disabled={throwBall} onClick={handleCatchPokemon} bgColor='#3f3d63' bgColorHover='#5c598c' style={{width: '250px'}}>
                     <img src={pokeball} alt='' width='10%' height='10%'/> &nbsp;
                     Catch Pokemon
                 </Button>
@@ -195,8 +195,8 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
             >
                 <div className='save-pokemon-container'>
                     <form className='column-center' onSubmit={handleSavePokemon}>
-                        <label className={`form-label ${errName? 'error' : ''}`}>Your pokemon nickname</label>
                         <TextField 
+                            labelText='Your pokemon nickname'
                             error={errName}
                             helperText={errName}
                             value={pokemonName} 

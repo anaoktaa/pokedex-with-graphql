@@ -41,21 +41,6 @@
     }
 }
 
-.error {
-    color: red !important;
-}
-
-.form-label {
-    font-size: 12px;
-    color: #4c4c4c;
-    margin: 0 0 5px;
-    padding-left: 3px;
-    text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    width: 100%;
-}
-
 
 .show-pokeball {
     animation: throw-ball 3s 1 1.8s, wiggle 1s 3 4.8s;

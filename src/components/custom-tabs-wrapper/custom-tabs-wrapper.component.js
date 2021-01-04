@@ -156,7 +156,7 @@ const CustomTabsWrapper = ({ actualSize, children, ...props }) => {
                         {children.props.title}
                     </li>
                 }
-                <div style={{width: `${width}px`, left: `${left}px`, borderBottom: `${mode === 'light'? 'none' : '2px solid white' }`}} className={` tab-active ${mode === 'light' ? 'tab-active-overlay' : ''}`}></div>
+                <li style={{width: `${width}px`, left: `${left}px`, borderBottom: `${mode === 'light'? 'none' : '2px solid white' }`}} className={` tab-active ${mode === 'light' ? 'tab-active-overlay' : ''}`}></li>
             </ul>
             {children.length ? children.map((item, index) => {
                 if (Number(index) === Number(activeKey)) {

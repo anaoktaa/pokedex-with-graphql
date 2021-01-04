@@ -40,6 +40,8 @@ export const LabelText = styled.label`
     padding-left: 3px;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    width: 100%;
 `;
 
 export const HelperTxt = styled.label`

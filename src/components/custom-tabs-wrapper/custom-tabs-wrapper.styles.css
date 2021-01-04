@@ -71,7 +71,7 @@
     display: none;
 }
 
-.tabs-container li {
+.tabs-container div {
     display: block;
     white-space: nowrap;
 }
