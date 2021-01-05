@@ -4,7 +4,7 @@
 
 This project was created with  [Create React App](https://github.com/facebookincubator/create-react-app).
 
-### Demo Site: [[Here]](https://pokedex-with-graphql.netlify.app//)
+### Demo Site: [[Here]](https://pokedex-with-graphql.netlify.app/)
 
 ## Getting Started
 ```sh
