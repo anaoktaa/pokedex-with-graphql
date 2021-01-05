@@ -135,6 +135,7 @@ const CustomTabsWrapper = ({ actualSize, children, ...props }) => {
                 {...props}>
                 {children.length ? children.map((child) => (
                      <li 
+                        data-testid={child.props['data-key']} 
                         key={child.props['data-key']} 
                         data-key={child.props['data-key']}
                         className='tab-panel'
@@ -149,6 +150,7 @@ const CustomTabsWrapper = ({ actualSize, children, ...props }) => {
                 ))
                     :
                     <li 
+                        data-testid={children.props['data-key']} 
                         key={children.props['data-key']} 
                         data-key={children.props['data-key']}
                         className='tab-panel'
@@ -167,7 +169,7 @@ const CustomTabsWrapper = ({ actualSize, children, ...props }) => {
                     )
                 }
                 else {
-                    return (<div/>)
+                    return (<div key={index}/>)
                 }
             }) :
                 <div>

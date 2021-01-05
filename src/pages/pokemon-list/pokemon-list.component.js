@@ -1,6 +1,5 @@
 import React from  'react-router';
 import { useQuery } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
 
 import { GET_POKEMONS } from '../../graphql/graphql';
 
@@ -10,9 +9,8 @@ import Loading from '../../components/loading/loading.component';
 
 import './pokemon-list.styles.css';
 
-const PokemonList = () => {
-    const history = useHistory();
-    console.log("ISI HISTOR", history);
+const PokemonList = ({ history }) => {
+
     const limit = 12;
     const { loading, data, error, fetchMore  } = useQuery(GET_POKEMONS, {
         variables: {
@@ -22,7 +20,6 @@ const PokemonList = () => {
     });
 
     const handleDetail = (data) => {
-        console.log("maju teruss cuyy");
         history.push(`/pokemon-detail/${data.name}`)
     }
 

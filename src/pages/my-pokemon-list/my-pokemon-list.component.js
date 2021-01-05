@@ -10,7 +10,7 @@ const MyPokemonList = () => {
     const { myPokemonList, removeMyPokemonFromList } = useContext(PokemonContext);
     const [ overlay, setOverlay ] = useState(null);
     const [ emptyData, setEmptyData ] = useState(true);
-    const arrMyPokemonList =Object.keys(myPokemonList).map(key => myPokemonList[key]);
+    const arrMyPokemonList = Object.keys(myPokemonList).map(key => myPokemonList[key]);
 
     const handleRemovePokemon = (item, detail) => {
         removeMyPokemonFromList({

@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, cleanup, fireEvent  } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { useHistory } from 'react-router-dom';
 
 import { GET_POKEMONS } from '../../graphql/graphql';
 import PokemonList from './pokemon-list.component';
-
-afterEach(cleanup);
 
 const mocks = [
     {
@@ -33,6 +32,20 @@ const mocks_err = {
     error: new Error('An error occurred'),
 };
 
+const mocks_err_graphql = [
+    {
+      request: {
+          query: GET_POKEMONS,
+          variables: {
+              limit: 12,
+              offset: 0
+          },
+      },
+      result: { errors: [{ message: "" }] }
+    }
+];
+
+
 const mockHistoryPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
@@ -59,31 +72,49 @@ describe('Test the query component for <PokemonList/>', () => {
         expect(getByTestId('loading-progress')).toBeInTheDocument();
     });
     it('render pokemon list page', async() => {
+        const history = useHistory()
         const { getByTestId, findByText } =  render(
             <MockedProvider mocks={mocks} addTypename={false}>
-                <PokemonList history={history} />
+                <PokemonList history={history}/>
             </MockedProvider>  
-          
         );
         expect(getByTestId('loading-progress')).toBeInTheDocument();
+
+        //Find text dengan Nama Pokemon Butterfree
         const pokeName = await findByText('butterfree');
         expect(pokeName).toBeInTheDocument();
 
+         //Find text dengan ID Pokemon Butterfree
+        const pokeId = await findByText(/12/i);
+        expect(pokeId).toBeInTheDocument();
+
+        //Find component dengan nilai id "pokemon-list-page-butterfree"
         const pokeName2 = await getByTestId('pokemon-list-page-butterfree');
         expect(pokeName2).toBeInTheDocument();
 
+        //Ketika klik pokemon-list-page-butterfree
         fireEvent.click(pokeName2);
         expect(mockHistoryPush).toHaveBeenCalledWith('/pokemon-detail/butterfree');
 
     });
-    it("should query the pokemons and render error message", async () => {
+    it("should query the pokemons and render error message when error network", async () => {
         const { findByText } = render (
             <MockedProvider mocks={[mocks_err]} addTypename={false}>
                 <PokemonList/>
             </MockedProvider>  
         )
-        const pokeName = await findByText('Error(Error: An error occurred)');
+        const pokeName = await findByText(/error/i);
         expect(pokeName).toBeInTheDocument();
     });
+
+    it("should query the pokemons and render error message when graphql return error", async () => {      
+        const { findByText } = render (
+            <MockedProvider mocks={mocks_err_graphql} addTypename={false}>
+                <PokemonList/>
+            </MockedProvider>  
+        )
+        const pokeName = await findByText(/error/i);
+        expect(pokeName).toBeInTheDocument();
+    })
 });
 

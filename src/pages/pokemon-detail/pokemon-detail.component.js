@@ -150,7 +150,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
                         <DetailPanelContainer>
                             {
                                 data.pokemon.stats.map((item) => (
-                                    <Progress value={item.base_stat} color={statColor(item.stat.name)} name={item.stat.name} />
+                                    <Progress key={item.base_stat} value={item.base_stat} color={statColor(item.stat.name)} name={item.stat.name} />
                                 ))
                             }
                         
@@ -171,7 +171,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
                             {data.pokemon.moves.map(({ move: {name } }) => {
                             
                                 return (
-                                    <Badge type='badge'>{name}</Badge>
+                                    <Badge key={name} type='badge'>{name}</Badge>
                                 )
                             })}
                         </DetailPanelContainer>
