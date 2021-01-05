@@ -150,7 +150,7 @@ const PokemonDetail = ({ match: { params: { pokeName } } }) => {
                         <DetailPanelContainer>
                             {
                                 data.pokemon.stats.map((item) => (
-                                    <Progress key={item.base_stat} value={item.base_stat} color={statColor(item.stat.name)} name={item.stat.name} />
+                                    <Progress key={item.stat.name} value={item.base_stat} color={statColor(item.stat.name)} name={item.stat.name} />
                                 ))
                             }
                         

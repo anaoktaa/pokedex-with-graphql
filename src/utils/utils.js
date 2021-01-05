@@ -1,4 +1,5 @@
 export const GetRandomInteger = (max) => {
+    if (isNaN(max)) return ''; 
     return Math.floor(Math.random() * Math.floor(max));
 }
 

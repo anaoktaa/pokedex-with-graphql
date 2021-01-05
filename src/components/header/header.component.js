@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { HeaderContainer, HeaderTitle, HeaderWrapper, HeaderDropdownMenu,
          LinkMenu, RightMenuContainer } from './header.styled';
@@ -23,10 +25,10 @@ const Header = () => {
                 <HeaderTitle>Pokédex</HeaderTitle>
                 <div className='icon-header-container'>
                     <div className={`icon-bar-show ${!hiddenMenu? 'icon-bar-hidden' : ''}`}>
-                        <i onClick={handleToggleMenu} style={style.icon} class="fas fa-bars"></i>
+                        <FontAwesomeIcon onClick={handleToggleMenu} style={style.icon} icon={faBars} />
                     </div>
                   <div className={`icon-close ${!hiddenMenu? 'icon-close-show' : ''}`}>
-                    <i onClick={handleToggleMenu} style={style.icon} class="fas fa-times"></i>
+                    <FontAwesomeIcon onClick={handleToggleMenu} style={style.icon} icon={faTimes} />
                   </div>
                 </div>
                 <RightMenuContainer>
@@ -48,7 +50,7 @@ const Header = () => {
 const style = {
     icon: {
         fontSize: '22px',
-        cursor: 'pointer'
+        cursor: 'pointer',
     }
 }
 export default Header;

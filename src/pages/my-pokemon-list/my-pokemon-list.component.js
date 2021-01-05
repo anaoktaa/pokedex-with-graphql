@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { PokemonContext } from '../../context/pokemon.context';
 import PokemonItem from '../../components/pokemon-item/pokemon-item.component';
@@ -58,7 +60,7 @@ const MyPokemonList = () => {
                                 image={pokemons.sprites.front_default}
                             >
                                 <div className={`pokeoverlay ${overlay === pokemon? 'show-overlay' : ''}`}>
-                                    <i onClick={() => handleRemovePokemon(pokemon, pokemons)} class="far fa-trash-alt" style={{fontSize: '45px', color: '#fff', cursor: 'pointer'}}></i>
+                                    <FontAwesomeIcon onClick={() => handleRemovePokemon(pokemon, pokemons)} style={{fontSize: '45px', color: '#fff', cursor: 'pointer'}} icon={faTrashAlt} />
                                 </div>
                             </PokemonItem>
                         ))
